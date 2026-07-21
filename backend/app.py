@@ -14,7 +14,7 @@ from api.upload_api import upload_bp
 from api.question_api import question_bp
 from api.blueprint_api import blueprint_bp
 from api.generate_api import generate_bp
-
+from api.import_api import import_bp
 
 app = Flask(__name__)
 
@@ -31,6 +31,13 @@ init_db(app)
 # -------------------------
 # Register API Blueprints
 # -------------------------
+app.register_blueprint(
+
+    import_bp,
+
+    url_prefix="/api/import"
+
+)
 
 app.register_blueprint(
     auth_bp,

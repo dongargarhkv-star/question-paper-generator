@@ -82,3 +82,4 @@ class Config:
         "Section C",
         "Section D"
     ]
+Add database configuration

@@ -21,6 +21,7 @@ import GeneratePaper from "./pages/GeneratePaper";
 import PreviewPaper from "./pages/PreviewPaper";
 import Settings from "./pages/Settings";
 
+import GeneratedPapers from "./pages/GeneratedPapers";
 import "./App.css";
 
 function App() {
@@ -90,6 +91,10 @@ function App() {
                                 path="/settings"
                                 element={<Settings />}
                             />
+                              <Route
+    path="/generated-papers"
+    element={<GeneratedPapers />}
+/>     
 
                         </Routes>
 

@@ -63,7 +63,12 @@ function Sidebar() {
             icon: <FaCog />,
             path: "/settings"
         }
-
+     
+<li className="nav-item">
+    <Link className="nav-link" to="/generated-papers">
+        📄 Generated Papers
+    </Link>
+</li>
     ];
 
     return (

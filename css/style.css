@@ -1,0 +1,374 @@
+/*=========================================================
+AI Question Paper Generator v2.0
+Global Style Sheet
+Developer : Amit Yerpude
+=========================================================*/
+
+/* ===============================
+   GOOGLE FONT
+================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ===============================
+   ROOT COLORS
+================================= */
+
+:root{
+
+    --primary:#0d6efd;
+    --success:#198754;
+    --warning:#ffc107;
+    --danger:#dc3545;
+    --info:#0dcaf0;
+
+    --dark:#212529;
+    --light:#f8f9fa;
+
+    --card-radius:15px;
+
+}
+
+/* ===============================
+   BODY
+================================= */
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#f4f6f9;
+
+    color:#333;
+
+    min-height:100vh;
+
+}
+
+/* ===============================
+   NAVBAR
+================================= */
+
+.navbar{
+
+    box-shadow:0 3px 12px rgba(0,0,0,.15);
+
+}
+
+.navbar-brand{
+
+    font-size:1.3rem;
+
+    font-weight:600;
+
+}
+
+/* ===============================
+   HEADINGS
+================================= */
+
+h1{
+
+    font-weight:700;
+
+}
+
+h2,h3,h4,h5{
+
+    font-weight:600;
+
+}
+
+/* ===============================
+   CARDS
+================================= */
+
+.card{
+
+    border:none;
+
+    border-radius:var(--card-radius);
+
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 12px 25px rgba(0,0,0,.15);
+
+}
+
+.card-header{
+
+    border-radius:15px 15px 0 0 !important;
+
+    font-weight:600;
+
+}
+
+/* ===============================
+   MODULE ICONS
+================================= */
+
+.card h1{
+
+    font-size:3rem;
+
+    margin-bottom:15px;
+
+}
+
+/* ===============================
+   BUTTONS
+================================= */
+
+.btn{
+
+    border-radius:10px;
+
+    font-weight:500;
+
+}
+
+.btn:hover{
+
+    transform:scale(1.02);
+
+}
+
+/* ===============================
+   TABLE
+================================= */
+
+.table{
+
+    background:white;
+
+}
+
+.table th{
+
+    background:#0d6efd;
+
+    color:white;
+
+    text-align:center;
+
+}
+
+.table td{
+
+    vertical-align:middle;
+
+}
+
+/* ===============================
+   INPUTS
+================================= */
+
+.form-control,
+.form-select{
+
+    border-radius:10px;
+
+}
+
+.form-control:focus,
+.form-select:focus{
+
+    box-shadow:0 0 8px rgba(13,110,253,.25);
+
+}
+
+/* ===============================
+   STATUS BOX
+================================= */
+
+#status{
+
+    font-size:16px;
+
+    padding:10px;
+
+}
+
+/* ===============================
+   FOOTER
+================================= */
+
+footer{
+
+    color:#666;
+
+    font-size:14px;
+
+}
+
+/* ===============================
+   BADGES
+================================= */
+
+.badge{
+
+    font-size:.9rem;
+
+    padding:8px 12px;
+
+}
+
+/* ===============================
+   SCROLLBAR
+================================= */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#0d6efd;
+
+    border-radius:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#eeeeee;
+
+}
+
+/* ===============================
+   DASHBOARD MODULES
+================================= */
+
+.dashboard-card{
+
+    cursor:pointer;
+
+}
+
+.dashboard-card:hover{
+
+    background:#f8f9fa;
+
+}
+
+/* ===============================
+   PAGE TITLE
+================================= */
+
+.page-title{
+
+    font-weight:700;
+
+    color:#0d6efd;
+
+    margin-bottom:20px;
+
+}
+
+/* ===============================
+   FILE UPLOAD
+================================= */
+
+.upload-box{
+
+    border:2px dashed #0d6efd;
+
+    border-radius:15px;
+
+    padding:40px;
+
+    background:white;
+
+    text-align:center;
+
+    transition:.3s;
+
+}
+
+.upload-box:hover{
+
+    background:#eef5ff;
+
+}
+
+/* ===============================
+   STATISTICS
+================================= */
+
+.stat-card{
+
+    text-align:center;
+
+    padding:20px;
+
+}
+
+.stat-card h2{
+
+    font-size:2rem;
+
+    margin-bottom:5px;
+
+}
+
+.stat-card p{
+
+    margin:0;
+
+    color:#666;
+
+}
+
+/* ===============================
+   PREVIEW AREA
+================================= */
+
+.preview{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    box-shadow:0 5px 10px rgba(0,0,0,.08);
+
+}
+
+/* ===============================
+   PRINT
+================================= */
+
+@media print{
+
+body{
+
+    background:white;
+
+}
+
+nav,
+footer,
+.btn{
+
+    display:none;
+
+}
+
+.card{
+
+    border:none;
+
+    box-shadow:none;
+
+}
+
+}

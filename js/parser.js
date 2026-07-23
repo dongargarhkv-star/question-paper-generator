@@ -245,15 +245,17 @@ function getMarks(line){
 
 function isQuestion(line){
 
-    return(
+    return (
 
         /^q\.?\s*\d+/i.test(line) ||
 
-        /^\d+\./.test(line) ||
+        /^question\s*\d+/i.test(line) ||
 
-        /^\d+\)/.test(line) ||
+        /^\d+[.)]/.test(line) ||
 
-        /^question\s+\d+/i.test(line)
+        /^\(\d+\)/.test(line) ||
+
+        /^[ivxlcdm]+[.)]/i.test(line)
 
     );
 
@@ -272,6 +274,10 @@ function cleanQuestion(line){
         .replace(/^question\s*\d+\s*[:.)-]?\s*/i,"")
 
         .replace(/^\d+\s*[.)-]\s*/,"")
+
+        .replace(/^\(\d+\)\s*/,"")
+
+        .replace(/^[ivxlcdm]+[.)]\s*/i,"")
 
         .trim();
 

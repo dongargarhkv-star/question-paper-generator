@@ -383,3 +383,429 @@ function getDifficulty(question){
     return "Hard";
 
 }
+/*=========================================================
+Universal Parser
+Part 3 : Advanced Parsing
+=========================================================*/
+
+//=========================================================
+// Finalize Parser
+//=========================================================
+
+function finalizeParser(){
+
+    removeDuplicateQuestions();
+
+    validateQuestions();
+
+    console.log("================================");
+
+    console.log("Questions Extracted :", parser.questions.length);
+
+    console.table(parser.questions);
+
+    console.log("================================");
+
+    saveQuestionBank(parser.questions);
+
+    showImportStatistics();
+
+}
+
+//=========================================================
+// Remove Duplicate Questions
+//=========================================================
+
+function removeDuplicateQuestions(){
+
+    const seen = new Set();
+
+    parser.questions = parser.questions.filter(q=>{
+
+        const key = q.question.trim().toLowerCase();
+
+        if(seen.has(key))
+
+            return false;
+
+        seen.add(key);
+
+        return true;
+
+    });
+
+}
+
+//=========================================================
+// Validate Questions
+//=========================================================
+
+function validateQuestions(){
+
+    parser.questions = parser.questions.filter(q=>{
+
+        if(!q.question)
+
+            return false;
+
+        if(q.question.length < 5)
+
+            return false;
+
+        if(!q.chapter)
+
+            q.chapter="General";
+
+        if(!q.section)
+
+            q.section="A";
+
+        if(!q.marks)
+
+            q.marks=1;
+
+        return true;
+
+    });
+
+}
+
+//=========================================================
+// Statistics
+//=========================================================
+
+function showImportStatistics(){
+
+    let marks={
+
+        1:0,
+        2:0,
+        3:0,
+        4:0,
+        5:0
+
+    };
+
+    parser.questions.forEach(q=>{
+
+        if(marks[q.marks]!==undefined)
+
+            marks[q.marks]++;
+
+    });
+
+    let html=`
+
+<h4>Import Successful</h4>
+
+<hr>
+
+<b>Subject :</b> ${parser.subject}<br>
+
+<b>Total Questions :</b> ${parser.questions.length}<br>
+
+<b>Total Chapters :</b> ${getChapterCount()}<br><br>
+
+<table class="table table-bordered">
+
+<tr>
+
+<th>Marks</th>
+
+<th>Questions</th>
+
+</tr>
+
+<tr>
+
+<td>1 Mark</td>
+
+<td>${marks[1]}</td>
+
+</tr>
+
+<tr>
+
+<td>2 Marks</td>
+
+<td>${marks[2]}</td>
+
+</tr>
+
+<tr>
+
+<td>3 Marks</td>
+
+<td>${marks[3]}</td>
+
+</tr>
+
+<tr>
+
+<td>4 Marks</td>
+
+<td>${marks[4]}</td>
+
+</tr>
+
+<tr>
+
+<td>5 Marks</td>
+
+<td>${marks[5]}</td>
+
+</tr>
+
+</table>
+
+`;
+
+    showStatus(html,"success");
+
+}
+
+//=========================================================
+// Chapter Count
+//=========================================================
+
+function getChapterCount(){
+
+    return new Set(
+
+        parser.questions.map(q=>q.chapter)
+
+    ).size;
+
+}
+
+//=========================================================
+// Preview
+//=========================================================
+
+function showParsedPreview(){
+
+    const preview=document.getElementById("preview");
+
+    if(!preview)
+
+        return;
+
+    let html="<table class='table table-bordered'>";
+
+    html+="<tr>";
+
+    html+="<th>#</th>";
+
+    html+="<th>Chapter</th>";
+
+    html+="<th>Marks</th>";
+
+    html+="<th>Question</th>";
+
+    html+="</tr>";
+
+    parser.questions.slice(0,20).forEach((q,index)=>{
+
+        html+=`
+
+<tr>
+
+<td>${index+1}</td>
+
+<td>${q.chapter}</td>
+
+<td>${q.marks}</td>
+
+<td>${q.question}</td>
+
+</tr>
+
+`;
+
+    });
+
+    html+="</table>";
+
+    preview.innerHTML=html;
+
+}
+/*=========================================================
+Universal Parser
+Part 4 : Smart Question Builder
+=========================================================*/
+
+//=========================================================
+// Temporary Buffer
+//=========================================================
+
+let currentQuestion = null;
+
+//=========================================================
+// Parse Paragraph (Advanced)
+//=========================================================
+
+function parseParagraph(paragraph){
+
+    const lines = paragraph
+        .split("\n")
+        .map(x=>x.trim())
+        .filter(x=>x.length>0);
+
+    lines.forEach(function(line){
+
+        //-------------------------------------------------
+        // Chapter
+        //-------------------------------------------------
+
+        if(isChapter(line)){
+
+            saveCurrentQuestion();
+
+            parser.currentChapter = getChapter(line);
+
+            return;
+
+        }
+
+        //-------------------------------------------------
+        // Section
+        //-------------------------------------------------
+
+        if(isSection(line)){
+
+            saveCurrentQuestion();
+
+            parser.currentSection = getSection(line);
+
+            parser.currentMarks =
+                SECTION_MARKS[parser.currentSection];
+
+            return;
+
+        }
+
+        //-------------------------------------------------
+        // Marks
+        //-------------------------------------------------
+
+        let m = getMarks(line);
+
+        if(m !== null){
+
+            parser.currentMarks = m;
+
+        }
+
+        //-------------------------------------------------
+        // New Question
+        //-------------------------------------------------
+
+        if(isQuestion(line)){
+
+            saveCurrentQuestion();
+
+            currentQuestion = {
+
+                subject: parser.subject,
+
+                chapter: parser.currentChapter,
+
+                section: parser.currentSection,
+
+                marks: parser.currentMarks,
+
+                type: getQuestionType(line),
+
+                difficulty: getDifficulty(line),
+
+                question: cleanQuestion(line)
+
+            };
+
+            return;
+
+        }
+
+        //-------------------------------------------------
+        // Continue Previous Question
+        //-------------------------------------------------
+
+        if(currentQuestion){
+
+            currentQuestion.question +=
+                " " + line;
+
+        }
+
+    });
+
+}
+/*=========================================================
+Universal Parser
+Part 5 : OR, Subparts & Case Study Detection
+=========================================================*/
+
+//=========================================================
+// Detect OR
+//=========================================================
+
+function isOR(line){
+
+    line=line.trim().toUpperCase();
+
+    return line==="OR";
+
+}
+
+//=========================================================
+// Detect Subparts
+// a)
+// b)
+// c)
+//=========================================================
+
+function isSubPart(line){
+
+    return /^[a-zA-Z][.)]/.test(line);
+
+}
+
+//=========================================================
+// Detect Assertion Reason
+//=========================================================
+
+function isAssertionReason(line){
+
+    const text=line.toLowerCase();
+
+    return (
+
+        text.includes("assertion") &&
+
+        text.includes("reason")
+
+    );
+
+}
+
+//=========================================================
+// Detect Case Study
+//=========================================================
+
+function isCaseStudy(line){
+
+    const text=line.toLowerCase();
+
+    return (
+
+        text.includes("case study") ||
+
+        text.includes("read the passage") ||
+
+        text.includes("study the following") ||
+
+        text.includes("read the following passage")
+
+    );
+
+}

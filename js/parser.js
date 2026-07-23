@@ -164,75 +164,6 @@ function detectSubject(){
 
 }
 
-//=========================================================
-// Parse One Paragraph
-//=========================================================
-
-function parseParagraph(paragraph){
-
-    const lines = paragraph
-
-        .split("\n")
-
-        .map(x=>x.trim())
-
-        .filter(x=>x.length>0);
-
-    lines.forEach(function(line){
-
-        if(isChapter(line)){
-
-            parser.currentChapter=getChapter(line);
-
-            return;
-
-        }
-
-        if(isSection(line)){
-
-            parser.currentSection=getSection(line);
-
-            parser.currentMarks=
-
-                SECTION_MARKS[parser.currentSection];
-
-            return;
-
-        }
-
-        const marks=getMarks(line);
-
-        if(marks!==null){
-
-            parser.currentMarks=marks;
-
-        }
-
-        if(isQuestion(line)){
-
-            parser.questions.push({
-
-                subject:parser.subject,
-
-                chapter:parser.currentChapter,
-
-                section:parser.currentSection,
-
-                marks:parser.currentMarks,
-
-                type:getQuestionType(line),
-
-                question:cleanQuestion(line),
-
-                difficulty:getDifficulty(line)
-
-            });
-
-        }
-
-    });
-
-}
 
 //=========================================================
 // Chapter Detection
@@ -278,17 +209,31 @@ function getSection(line){
 
 function getMarks(line){
 
-    line=line.toLowerCase();
+    const text = line.toLowerCase();
 
-    if(line.includes("1 mark")) return 1;
+    if(text.includes("1 mark") || text.includes("(1)") || text.includes("1m"))
+        return 1;
 
-    if(line.includes("2 mark")) return 2;
+    if(text.includes("2 mark") || text.includes("(2)") || text.includes("2m"))
+        return 2;
 
-    if(line.includes("3 mark")) return 3;
+    if(text.includes("3 mark") || text.includes("(3)") || text.includes("3m"))
+        return 3;
 
-    if(line.includes("4 mark")) return 4;
+    if(text.includes("4 mark") || text.includes("(4)") || text.includes("4m"))
+        return 4;
 
-    if(line.includes("5 mark")) return 5;
+    if(text.includes("5 mark") || text.includes("(5)") || text.includes("5m"))
+        return 5;
+
+    if(text.includes("very short"))
+        return 1;
+
+    if(text.includes("short answer"))
+        return 2;
+
+    if(text.includes("long answer"))
+        return 5;
 
     return null;
 
@@ -338,32 +283,38 @@ function cleanQuestion(line){
 
 function getQuestionType(question){
 
-    const q=question.toLowerCase();
+    const q = question.toLowerCase();
 
     if(q.includes("mcq"))
-
         return "MCQ";
 
     if(q.includes("assertion"))
+        return "Assertion-Reason";
 
-        return "Assertion";
+    if(q.includes("reason"))
+        return "Assertion-Reason";
 
     if(q.includes("case study"))
+        return "Case Study";
 
+    if(q.includes("passage"))
         return "Case Study";
 
     if(q.includes("python"))
+        return "Programming";
 
+    if(q.includes("program"))
         return "Programming";
 
     if(q.includes("sql"))
+        return "SQL";
 
+    if(q.includes("query"))
         return "SQL";
 
     return "Theory";
 
 }
-
 //=========================================================
 // Difficulty
 //=========================================================
@@ -408,6 +359,8 @@ function finalizeParser(){
     console.log("================================");
 
     saveQuestionBank(parser.questions);
+
+    showParsedPreview();
 
     showImportStatistics();
 

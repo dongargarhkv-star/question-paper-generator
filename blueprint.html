@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Blueprint Designer
+
+</title>
+
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+<link
+rel="stylesheet"
+href="css/style.css">
+
+</head>
+
+<body>
+
+<!--======================================================
+Navigation
+=======================================================-->
+
+<nav class="navbar navbar-dark bg-primary">
+
+<div class="container">
+
+<a
+class="navbar-brand"
+href="index.html">
+
+AI Question Paper Generator v2.0
+
+</a>
+
+</div>
+
+</nav>
+
+<!--======================================================
+Main Container
+=======================================================-->
+
+<div class="container mt-4">
+
+<div class="card shadow">
+
+<div class="card-header bg-success text-white">
+
+<h3>
+
+Blueprint Designer
+
+</h3>
+
+</div>
+
+<div class="card-body">
+
+<p>
+
+Create a blueprint for automatic question paper generation.
+
+</p>
+
+<hr>
+
+<!--======================================================
+Statistics
+=======================================================-->
+
+<div class="row text-center mb-4">
+
+<div class="col-md-3">
+
+<div class="card">
+
+<div class="card-body">
+
+<h6>
+
+Total Questions
+
+</h6>
+
+<h2 id="bpTotalQuestions">
+
+0
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card">
+
+<div class="card-body">
+
+<h6>
+
+Total Marks
+
+</h6>
+
+<h2 id="bpTotalMarks">
+
+0
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card">
+
+<div class="card-body">
+
+<h6>
+
+Total Chapters
+
+</h6>
+
+<h2 id="bpTotalChapters">
+
+0
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card">
+
+<div class="card-body">
+
+<h6>
+
+Blueprint Status
+
+</h6>
+
+<h2 id="bpStatus">
+
+Ready
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<!--======================================================
+Paper Settings
+=======================================================-->
+
+<div class="card mb-4">
+
+<div class="card-header bg-primary text-white">
+
+<h5>
+
+Paper Settings
+
+</h5>
+
+</div>
+
+<div class="card-body">
+
+<div class="row">
+
+<div class="col-md-3">
+
+<label class="form-label">
+
+Class
+
+</label>
+
+<select
+id="className"
+class="form-select">
+
+<option>XI</option>
+
+<option selected>XII</option>
+
+</select>
+
+</div>
+
+<div class="col-md-3">
+
+<label class="form-label">
+
+Subject
+
+</label>
+
+<input
+type="text"
+id="subjectName"
+class="form-control"
+placeholder="Computer Science">
+
+</div>
+
+<div class="col-md-3">
+
+<label class="form-label">
+
+Maximum Marks
+
+</label>
+
+<input
+type="number"
+id="maximumMarks"
+class="form-control"
+value="70">
+
+</div>
+
+<div class="col-md-3">
+
+<label class="form-label">
+
+Duration
+
+</label>
+
+<input
+type="text"
+id="duration"
+class="form-control"
+value="3 Hours">
+
+</div>
+
+</div>
+
+<div class="row mt-3">
+
+<div class="col-md-6">
+
+<label class="form-label">
+
+Examination Name
+
+</label>
+
+<input
+type="text"
+id="examName"
+class="form-control"
+placeholder="Half Yearly Examination">
+
+</div>
+
+<div class="col-md-6">
+
+<label class="form-label">
+
+Session
+
+</label>
+
+<input
+type="text"
+id="session"
+class="form-control"
+placeholder="2026-27">
+
+</div>
+
+</div>
+
+<div class="mt-3">
+
+<label class="form-label">
+
+General Instructions
+
+</label>
+
+<textarea
+id="instructions"
+class="form-control"
+rows="5">
+
+1. All questions are compulsory.
+2. Read all questions carefully.
+3. Internal choices are provided wherever applicable.
+4. Use proper steps and calculations where required.
+
+</textarea>
+
+</div>
+
+</div>
+
+</div>

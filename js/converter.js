@@ -129,7 +129,7 @@ function convertQuestion(question){
 
         answer: "",
 
-        options: [],
+        options: extractOptions(question.question),
 
         solution: "",
 
@@ -353,5 +353,129 @@ function finalizeConversion(){
     console.table(converter.converted);
 
     console.log("================================");
+
+}
+//=========================================================
+// Remove Duplicate Questions
+//=========================================================
+
+function removeConvertedDuplicates(){
+
+    const seen = new Set();
+
+    converter.converted = converter.converted.filter(function(q){
+
+        const key = q.question.trim().toLowerCase();
+
+        if(seen.has(key))
+            return false;
+
+        seen.add(key);
+
+        return true;
+
+    });
+
+}
+
+//=========================================================
+// Sort Questions
+//=========================================================
+
+function sortConvertedQuestions(){
+
+    converter.converted.sort(function(a,b){
+
+        if(a.chapter === b.chapter){
+
+            if(a.marks === b.marks){
+
+                return a.question.localeCompare(b.question);
+
+            }
+
+            return a.marks - b.marks;
+
+        }
+
+        return a.chapter.localeCompare(b.chapter);
+
+    });
+
+}
+
+//=========================================================
+// Save Question Bank
+//=========================================================
+
+function saveConvertedQuestionBank(){
+
+    localStorage.setItem(
+
+        "questionBank",
+
+        JSON.stringify(converter.converted)
+
+    );
+
+    localStorage.setItem(
+
+        "chapters",
+
+        JSON.stringify(getConvertedChapters())
+
+    );
+
+    console.log("Question Bank Saved Successfully.");
+
+}
+
+//=========================================================
+// Chapter List
+//=========================================================
+
+function getConvertedChapters(){
+
+    return [
+
+        ...new Set(
+
+            converter.converted.map(q=>q.chapter)
+
+        )
+
+    ];
+
+}
+
+//=========================================================
+// Get Converted Questions
+//=========================================================
+
+function getConvertedQuestions(){
+
+    return converter.converted;
+
+}
+
+//=========================================================
+// Export JSON
+//=========================================================
+
+function exportConvertedQuestionBank(){
+
+    console.log(
+
+        JSON.stringify(
+
+            converter.converted,
+
+            null,
+
+            4
+
+        )
+
+    );
 
 }

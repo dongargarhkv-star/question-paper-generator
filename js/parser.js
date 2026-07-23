@@ -653,10 +653,9 @@ function parseParagraph(paragraph){
 
     lines.forEach(function(line){
 
-        //-------------------------------------------------
+        // -------------------------
         // Chapter
-        //-------------------------------------------------
-
+        // -------------------------
         if(isChapter(line)){
 
             saveCurrentQuestion();
@@ -667,10 +666,9 @@ function parseParagraph(paragraph){
 
         }
 
-        //-------------------------------------------------
+        // -------------------------
         // Section
-        //-------------------------------------------------
-
+        // -------------------------
         if(isSection(line)){
 
             saveCurrentQuestion();
@@ -684,22 +682,20 @@ function parseParagraph(paragraph){
 
         }
 
-        //-------------------------------------------------
+        // -------------------------
         // Marks
-        //-------------------------------------------------
+        // -------------------------
+        let marks = getMarks(line);
 
-        let m = getMarks(line);
+        if(marks !== null){
 
-        if(m !== null){
-
-            parser.currentMarks = m;
+            parser.currentMarks = marks;
 
         }
 
-        //-------------------------------------------------
+        // -------------------------
         // New Question
-        //-------------------------------------------------
-
+        // -------------------------
         if(isQuestion(line)){
 
             saveCurrentQuestion();
@@ -726,14 +722,40 @@ function parseParagraph(paragraph){
 
         }
 
-        //-------------------------------------------------
+        // -------------------------
         // Continue Previous Question
-        //-------------------------------------------------
-
+        // -------------------------
         if(currentQuestion){
 
-            currentQuestion.question +=
-                " " + line;
+            if(isOR(line)){
+
+                currentQuestion.question += " [OR] ";
+
+                return;
+
+            }
+
+            if(isSubPart(line)){
+
+                currentQuestion.question += " " + line;
+
+                return;
+
+            }
+
+            if(isAssertionReason(line)){
+
+                currentQuestion.type = "Assertion-Reason";
+
+            }
+
+            if(isCaseStudy(line)){
+
+                currentQuestion.type = "Case Study";
+
+            }
+
+            currentQuestion.question += " " + line;
 
         }
 

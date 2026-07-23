@@ -393,6 +393,7 @@ Part 3 : Advanced Parsing
 //=========================================================
 
 function finalizeParser(){
+    saveCurrentQuestion();
 
     removeDuplicateQuestions();
 
@@ -760,6 +761,19 @@ function parseParagraph(paragraph){
         }
 
     });
+
+}
+function saveCurrentQuestion(){
+
+    if(!currentQuestion)
+        return;
+
+    currentQuestion.question =
+        currentQuestion.question.trim();
+
+    parser.questions.push(currentQuestion);
+
+    currentQuestion = null;
 
 }
 /*=========================================================

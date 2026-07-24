@@ -1023,7 +1023,30 @@ function blueprintReady(){
     );
 
 }
+//=========================================================
+// Enable Generate Button if Blueprint Exists
+//=========================================================
 
+function checkSavedBlueprint(){
+
+    const savedBlueprint =
+        JSON.parse(
+            localStorage.getItem("blueprint")
+        );
+
+
+    const btn=document.getElementById(
+        "generatePaperBtn"
+    );
+
+
+    if(savedBlueprint && btn){
+
+        btn.disabled=false;
+
+    }
+
+}
 //=========================================================
 // Startup
 //=========================================================

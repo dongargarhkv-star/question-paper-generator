@@ -1190,3 +1190,40 @@ document.addEventListener("DOMContentLoaded", function(){
     initializeManager();
 
 });
+//=========================================================
+// Workflow : Enable Blueprint
+//=========================================================
+
+function checkBlueprintAccess(){
+
+    let questions = loadQuestionBank();
+
+
+    if(questions.length > 0){
+
+        let btn=document.getElementById(
+            "blueprintButton"
+        );
+
+
+        if(btn){
+
+            btn.classList.remove("d-none");
+
+        }
+
+    }
+
+}
+
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+    setTimeout(
+        checkBlueprintAccess,
+        500
+    );
+
+});

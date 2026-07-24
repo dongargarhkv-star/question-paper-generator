@@ -482,23 +482,43 @@ async function readPDF(file){
 //=========================================================
 // Common Function
 //=========================================================
-
 function fileLoaded(){
 
     showStatus(
-
         "File loaded successfully.<br>Starting AI Conversion...",
-
         "success"
-
     );
 
-    console.log("Characters :",rawText.length);
+    console.log("Characters :", rawText.length);
+    console.log("Words :", rawText.split(/\s+/).length);
+    console.log("Lines :", rawText.split("\n").length);
 
-    console.log("Words :",rawText.split(/\s+/).length);
+    //--------------------------------------------------
+    // Parse Questions
+    //--------------------------------------------------
 
-    console.log("Lines :",rawText.split("\n").length);
+    parseDocument(rawText);
 
-    // Parser will be added in Part 3
+    //--------------------------------------------------
+    // Convert Question Bank
+    //--------------------------------------------------
+
+    convertQuestionBank(parser.questions);
+
+    //--------------------------------------------------
+    // Save Question Bank
+    //--------------------------------------------------
+
+    saveQuestionBank(converter.converted);
+
+    //--------------------------------------------------
+    // Status
+    //--------------------------------------------------
+
+    showStatus(
+        converter.converted.length +
+        " Questions Imported Successfully.",
+        "success"
+    );
 
 }

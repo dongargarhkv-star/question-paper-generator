@@ -348,39 +348,6 @@ function updateBlueprintSummary(){
 
 }
 
-//=========================================================
-// Live Update
-//=========================================================
-
-function registerBlueprintEvents(){
-
-    document
-
-        .addEventListener(
-
-            "input",
-
-            function(event){
-
-                if(
-
-                    event.target.classList.contains(
-
-                        "blueprint-input"
-
-                    )
-
-                ){
-
-                    updateBlueprintSummary();
-
-                }
-
-            }
-
-        );
-
-}
 /*=========================================================
 AI Question Paper Generator v2.0
 Blueprint Designer

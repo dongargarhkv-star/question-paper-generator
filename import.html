@@ -340,10 +340,11 @@ No Preview Available
 <div class="text-center mt-4">
 
 <a
+id="managerButton"
 href="manager.html"
-class="btn btn-primary">
+class="btn btn-primary d-none">
 
-Question Bank Manager →
+Continue to Question Bank Manager →
 
 </a>
 
@@ -359,6 +360,72 @@ Question Bank Manager →
 <script src="js/parser.js"></script>
 <script src="js/converter.js"></script>
 <script src="js/importer.js"></script>
+<script>
+
+
+// Show exam details
+
+let examDetails =
+JSON.parse(localStorage.getItem("examDetails")) || {};
+
+
+if(examDetails.school){
+
+document.getElementById("status").innerHTML=
+
+`
+<b>School:</b> ${examDetails.school}<br>
+<b>Exam:</b> ${examDetails.exam}<br>
+<b>Subject:</b> ${examDetails.subject}<br>
+<b>Class:</b> ${examDetails.class}
+`;
+
+}
+
+
+// Check import completion
+
+function checkImportStatus(){
+
+
+let questions =
+
+JSON.parse(
+
+localStorage.getItem("questionBank")
+
+) || [];
+
+
+
+if(questions.length>0){
+
+
+document.getElementById("managerButton")
+
+.classList.remove("d-none");
+
+
+document.getElementById("status").innerHTML +=
+
+`
+<hr>
+<span class="text-success">
+✅ Question Bank Created Successfully
+</span>
+`;
+
+}
+
+
+}
+
+
+
+setInterval(checkImportStatus,1000);
+
+
+</script>
 </body>
 
 </html>

@@ -493,27 +493,37 @@ function fileLoaded(){
     console.log("Words :", rawText.split(/\s+/).length);
     console.log("Lines :", rawText.split("\n").length);
 
-    //--------------------------------------------------
-    // Parse Questions
-    //--------------------------------------------------
+    //---------------------------------------
+    // Parse Document
+    //---------------------------------------
 
     parseDocument(rawText);
 
-    //--------------------------------------------------
-    // Convert Question Bank
-    //--------------------------------------------------
+    console.log(
+        "Parsed Questions :",
+        parser.questions.length
+    );
+
+    //---------------------------------------
+    // Convert
+    //---------------------------------------
 
     convertQuestionBank(parser.questions);
 
-    //--------------------------------------------------
-    // Save Question Bank
-    //--------------------------------------------------
+    console.log(
+        "Converted Questions :",
+        converter.converted.length
+    );
+
+    //---------------------------------------
+    // Save
+    //---------------------------------------
 
     saveQuestionBank(converter.converted);
 
-    //--------------------------------------------------
-    // Status
-    //--------------------------------------------------
+    //---------------------------------------
+    // Finish
+    //---------------------------------------
 
     showStatus(
         converter.converted.length +

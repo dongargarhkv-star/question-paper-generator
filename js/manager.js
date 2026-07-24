@@ -1185,3 +1185,8 @@ if(managerReady()){
     );
 
 }
+document.addEventListener("DOMContentLoaded", function(){
+
+    initializeManager();
+
+});

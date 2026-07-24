@@ -20,7 +20,7 @@ let generateData={
 
 };
 
-
+generateData.duplicates = 0;
 //=========================================================
 // Initialize
 //=========================================================
@@ -168,7 +168,15 @@ ${settings.instructions.replace(/\n/g,"<br>")}
 `;
 
 }
+function alreadySelected(question){
 
+    return generateData.paper.some(function(q){
+
+        return q.question===question.question;
+
+    });
+
+}
 //=========================================================
 // Generate Paper
 //=========================================================
@@ -206,17 +214,41 @@ function generatePaper(){
 
 
 
-        let selected=
+        available.sort(function(){
 
-            available.slice(0,item.count);
+    return Math.random()-0.5;
 
+});
 
+let selected = 0;
+
+for(let i=0;
+
+    i<available.length &&
+
+    selected<item.count;
+
+    i++){
+
+    if(!alreadySelected(available[i])){
 
         generateData.paper.push(
 
-            ...selected
+            available[i]
 
         );
+
+        selected++;
+
+    }
+
+    else{
+
+        generateData.duplicates++;
+
+    }
+
+}
 
 
     });

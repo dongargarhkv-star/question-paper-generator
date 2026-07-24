@@ -111,7 +111,62 @@ ${settings.examName}
 
 }
 
+//=========================================================
+// Display Header
+//=========================================================
 
+function displayHeader(){
+
+
+    if(!generateData.blueprint)
+        return;
+
+
+    const settings=
+
+        generateData.blueprint.paperSettings;
+
+
+
+    document.getElementById(
+
+        "examTitle"
+
+    ).innerHTML=
+
+        settings.examName;
+
+
+
+    document.getElementById(
+
+        "subjectTitle"
+
+    ).innerHTML=
+
+        settings.subject;
+
+
+
+    document.getElementById(
+
+        "instructionBox"
+
+    ).innerHTML=
+
+`
+<div class="alert alert-secondary">
+
+<b>General Instructions:</b>
+
+<br>
+
+${settings.instructions.replace(/\n/g,"<br>")}
+
+</div>
+`;
+
+}
 
 //=========================================================
 // Generate Paper

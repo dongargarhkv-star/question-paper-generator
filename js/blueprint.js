@@ -1055,12 +1055,20 @@ if(blueprintReady()){
 
     console.log("Blueprint Module Loaded Successfully.");
 
+    document.addEventListener(
+        "DOMContentLoaded",
+        function(){
+
+            checkSavedBlueprint();
+
+        }
+    );
+
+
 }else{
 
     console.warn(
-
         "Blueprint Module Waiting for Storage..."
-
     );
 
 }

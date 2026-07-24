@@ -917,24 +917,7 @@ function generateQuestionPaper(){
     window.location.href="generator.html";
 
 }
-function checkSavedBlueprint(){
 
-    const savedBlueprint =
-        JSON.parse(
-            localStorage.getItem("blueprint")
-        );
-
-    const btn=document.getElementById(
-        "generatePaperBtn"
-    );
-
-    if(savedBlueprint && btn){
-
-        btn.disabled=false;
-
-    }
-
-}
 /*=========================================================
 AI Question Paper Generator v2.0
 Blueprint Designer

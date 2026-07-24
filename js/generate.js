@@ -185,7 +185,7 @@ function generatePaper(){
 
 
     generateData.paper=[];
-
+    generateData.duplicates = 0;
 
     const blueprintData=
 
@@ -281,7 +281,17 @@ for(let i=0;
 
 function displayPaper(){
 
+    generateData.paper.sort(function(a,b){
 
+    if(a.section===b.section){
+
+        return Number(a.marks)-Number(b.marks);
+
+    }
+
+    return a.section.localeCompare(b.section);
+
+});
     let html="";
 
 
@@ -334,7 +344,15 @@ ${q.question}
 
 }
 
+//=========================================================
+// Print Question Paper
+//=========================================================
 
+function printGeneratedPaper(){
+
+    window.print();
+
+}
 
 //=========================================================
 // Events

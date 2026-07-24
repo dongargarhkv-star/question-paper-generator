@@ -329,3 +329,305 @@ rows="5">
 </div>
 
 </div>
+<!--======================================================
+Blueprint Distribution
+=======================================================-->
+
+<div class="card mb-4">
+
+<div class="card-header bg-success text-white">
+
+<h5>
+
+Chapter-wise Blueprint
+
+</h5>
+
+</div>
+
+<div class="card-body">
+
+<div class="table-responsive">
+
+<table
+class="table table-bordered table-hover align-middle"
+id="blueprintTable">
+
+<thead class="table-dark">
+
+<tr>
+
+<th rowspan="2">
+
+Chapter
+
+</th>
+
+<th colspan="5" class="text-center">
+
+Required Questions
+
+</th>
+
+<th colspan="5" class="text-center">
+
+Available Questions
+
+</th>
+
+</tr>
+
+<tr>
+
+<th>1M</th>
+
+<th>2M</th>
+
+<th>3M</th>
+
+<th>4M</th>
+
+<th>5M</th>
+
+<th>1M</th>
+
+<th>2M</th>
+
+<th>3M</th>
+
+<th>4M</th>
+
+<th>5M</th>
+
+</tr>
+
+</thead>
+
+<tbody id="blueprintTableBody">
+
+<tr>
+
+<td colspan="11" class="text-center text-muted">
+
+No Question Bank Loaded
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<!--======================================================
+Blueprint Summary
+=======================================================-->
+
+<div class="row mb-4">
+
+<div class="col-md-6">
+
+<div class="card">
+
+<div class="card-header bg-info text-white">
+
+Blueprint Summary
+
+</div>
+
+<div class="card-body">
+
+<p>
+
+<b>Total Questions :</b>
+
+<span id="summaryQuestions">
+
+0
+
+</span>
+
+</p>
+
+<p>
+
+<b>Total Marks :</b>
+
+<span id="summaryMarks">
+
+0
+
+</span>
+
+</p>
+
+<p>
+
+<b>Total Chapters :</b>
+
+<span id="summaryChapters">
+
+0
+
+</span>
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="card">
+
+<div class="card-header bg-warning">
+
+Validation
+
+</div>
+
+<div class="card-body">
+
+<div id="validationStatus">
+
+Blueprint not validated.
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<!--======================================================
+Blueprint Actions
+=======================================================-->
+
+<div class="card mb-4">
+
+<div class="card-header bg-secondary text-white">
+
+<h5>
+
+Blueprint Actions
+
+</h5>
+
+</div>
+
+<div class="card-body text-center">
+
+<button
+id="validateBlueprintBtn"
+class="btn btn-warning btn-lg me-2">
+
+Validate Blueprint
+
+</button>
+
+<button
+id="saveBlueprintBtn"
+class="btn btn-success btn-lg me-2">
+
+Save Blueprint
+
+</button>
+
+<button
+id="loadBlueprintBtn"
+class="btn btn-info btn-lg me-2">
+
+Load Blueprint
+
+</button>
+
+<button
+id="resetBlueprintBtn"
+class="btn btn-danger btn-lg me-2">
+
+Reset Blueprint
+
+</button>
+
+<button
+id="generatePaperBtn"
+class="btn btn-primary btn-lg">
+
+Generate Question Paper →
+
+</button>
+
+</div>
+
+</div>
+
+<!--======================================================
+Status Console
+=======================================================-->
+
+<div class="card mb-4">
+
+<div class="card-header bg-dark text-white">
+
+<h5>
+
+Blueprint Console
+
+</h5>
+
+</div>
+
+<div class="card-body">
+
+<div
+id="blueprintConsole"
+class="border rounded p-3 bg-light"
+style="min-height:120px; overflow:auto;">
+
+Ready...
+
+</div>
+
+</div>
+
+</div>
+<!--======================================================
+JavaScript
+=======================================================-->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!--======================================================
+Project Scripts
+=======================================================-->
+
+<script src="js/storage.js"></script>
+
+<script src="js/blueprint.js"></script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded",function(){
+
+    initializeStorage();
+
+    initializeBlueprint();
+
+});
+
+</script>
+
+</body>
+
+</html>

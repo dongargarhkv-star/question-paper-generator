@@ -634,6 +634,15 @@ function saveBlueprint(){
         "success"
 
     );
+    let btn=document.getElementById(
+"generatePaperBtn"
+);
+
+if(btn){
+
+    btn.disabled=false;
+
+}
 
 }
 

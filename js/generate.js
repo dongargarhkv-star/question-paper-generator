@@ -52,6 +52,7 @@ function initializeGenerator(){
 
 
     displayPaperDetails();
+    displayHeader();
 
 
     registerGenerateEvents();
@@ -294,9 +295,9 @@ ${q.question}
 
     document.getElementById(
 
-        "paperPreview"
+"questionArea"
 
-    ).innerHTML=html;
+).innerHTML=html;
 
 
 }

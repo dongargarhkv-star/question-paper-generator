@@ -9,7 +9,7 @@ Part 1 : Initialization
 //=========================================================
 // Manager Object
 //=========================================================
-
+console.log("MANAGER JS LOADED");
 let manager={
 
     questionBank:[],

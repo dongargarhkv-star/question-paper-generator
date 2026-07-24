@@ -265,7 +265,112 @@ window.addEventListener("DOMContentLoaded",()=>{
         );
 
 });
+//=========================================================
+// Reset Application
+//=========================================================
 
+function resetApplication(){
+
+    if(!confirm(
+
+        "This will delete all saved data.\nContinue?"
+
+    )){
+
+        return;
+
+    }
+
+    localStorage.clear();
+
+    console.log("================================");
+    console.log("Application Reset Completed");
+    console.log("================================");
+
+    location.reload();
+
+}
+//=========================================================
+// Application Version
+//=========================================================
+
+function showApplicationVersion(){
+
+    alert(
+
+        App.name +
+
+        "\n\nVersion : " +
+
+        App.version +
+
+        "\nDeveloper : " +
+
+        App.developer
+
+    );
+
+}
+//=========================================================
+// Global Error Handler
+//=========================================================
+
+window.addEventListener(
+
+    "error",
+
+    function(event){
+
+        console.error("================================");
+        console.error("Application Error");
+        console.error(event.message);
+        console.error(event.filename);
+        console.error("Line :",event.lineno);
+        console.error("================================");
+
+    }
+
+);
+//=========================================================
+// Promise Error Handler
+//=========================================================
+
+window.addEventListener(
+
+    "unhandledrejection",
+
+    function(event){
+
+        console.error(
+
+            "Unhandled Promise Error :",
+
+            event.reason
+
+        );
+
+    }
+
+);
+//=========================================================
+// Before Closing
+//=========================================================
+
+window.addEventListener(
+
+    "beforeunload",
+
+    function(){
+
+        console.log(
+
+            "Closing Application..."
+
+        );
+
+    }
+
+);
 //=========================================================
 // Export Functions
 //=========================================================
@@ -287,3 +392,7 @@ window.showStatus=showStatus;
 window.getQuestionBank=getQuestionBank;
 
 window.saveQuestionBank=saveQuestionBank;
+window.resetApplication = resetApplication;
+
+window.showApplicationVersion = showApplicationVersion;
+

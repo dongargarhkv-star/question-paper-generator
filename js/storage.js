@@ -55,6 +55,7 @@ function initializeStorage(){
     storage.chapters=
 
         loadChapters();
+    saveChapters(storage.chapters);
 
     storage.blueprint=
 
@@ -111,17 +112,29 @@ function loadQuestionBank(){
 // Load Chapters
 //=========================================================
 
+//=========================================================
+// Load Chapters
+//=========================================================
+
 function loadChapters(){
 
-    return JSON.parse(
+    const questionBank = loadQuestionBank();
 
-        localStorage.getItem(
+    const chapters = [
 
-            STORAGE_KEYS.CHAPTERS
+        ...new Set(
+
+            questionBank.map(function(q){
+
+                return q.chapter;
+
+            })
 
         )
 
-    ) || [];
+    ];
+
+    return chapters;
 
 }
 

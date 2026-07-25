@@ -1019,16 +1019,32 @@ function checkSavedBlueprint(){
 // Startup
 //=========================================================
 
-if(blueprintReady()){
+document.addEventListener(
 
-    console.log("Blueprint Module Loaded Successfully.");
+    "DOMContentLoaded",
 
-    checkSavedBlueprint();
+    function(){
 
-}else{
+        if(blueprintReady()){
 
-    console.warn(
-        "Blueprint Module Waiting for Storage..."
-    );
+            console.log("Blueprint Module Loaded Successfully.");
 
-}
+            initializeBlueprint();
+
+            checkSavedBlueprint();
+
+        }
+
+        else{
+
+            console.warn(
+
+                "Blueprint Module Waiting for Storage..."
+
+            );
+
+        }
+
+    }
+
+);

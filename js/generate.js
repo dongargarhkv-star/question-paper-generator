@@ -256,78 +256,80 @@ for(let i=0;
 
 
 }
-
-
-
 //=========================================================
 // Display Paper
 //=========================================================
+
 
 function displayPaper(){
 
     generateData.paper.sort(function(a,b){
 
-    if(a.section===b.section){
+        if(a.section===b.section){
 
-        return Number(a.marks)-Number(b.marks);
+            return Number(a.marks)-Number(b.marks);
 
-    }
+        }
 
-    return a.section.localeCompare(b.section);
-
-});
-    let html="";
-
-
-    generateData.paper.forEach(function(q,index){
-
-
-        html+=`
-
-<div class="card mb-2">
-
-<div class="card-body">
-
-
-<b>
-
-Q${index+1}.
-
-</b>
-
-${q.question}
-
-
-<br>
-
-<small>
-
-(${q.marks} Marks)
-
-</small>
-
-
-</div>
-
-</div>
-
-
-`;
-
+        return a.section.localeCompare(b.section);
 
     });
 
+    const settings = generateData.blueprint.paperSettings;
 
+    let html = "";
 
-    document.getElementById(
+    let currentSection = "";
 
-"questionArea"
+    let questionNumber = 1;
 
-).innerHTML=html;
+    generateData.paper.forEach(function(q){
 
+        if(q.section !== currentSection){
+
+            currentSection = q.section;
+
+            html += `
+
+<hr>
+
+<h4 class="text-center">
+
+SECTION ${currentSection}
+
+</h4>
+
+`;
+
+        }
+
+        html += `
+
+<div class="mb-3">
+
+<b>Q.${questionNumber}</b>
+
+&nbsp;
+
+${q.question}
+
+<div class="text-end">
+
+<b>(${q.marks} Marks)</b>
+
+</div>
+
+</div>
+
+`;
+
+        questionNumber++;
+
+    });
+
+    document.getElementById("questionArea").innerHTML = html;
 
 }
-
 //=========================================================
 // Print Question Paper
 //=========================================================

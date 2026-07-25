@@ -42,13 +42,7 @@ function initializeGenerator(){
         loadQuestionBank();
 
 
-    generateData.blueprint=
-
-        JSON.parse(
-
-            localStorage.getItem("blueprint")
-
-        );
+    generateData.blueprint = loadBlueprint();
 
 
     displayPaperDetails();
@@ -258,17 +252,7 @@ for(let i=0;
     displayPaper();
 
 
-    localStorage.setItem(
-
-        "generatedPaper",
-
-        JSON.stringify(
-
-            generateData.paper
-
-        )
-
-    );
+    saveGeneratedPaper(generateData.paper);
 
 
 }

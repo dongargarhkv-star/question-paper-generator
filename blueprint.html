@@ -564,7 +564,7 @@ Reset Blueprint
 id="generatePaperBtn"
 class="btn btn-primary btn-lg"
 disabled>
-
+Generate Question Paper
 </button>
 
 </div>
@@ -614,7 +614,23 @@ Project Scripts
 <script src="js/storage.js"></script>
 
 <script src="js/blueprint.js"></script>
+<script>
 
+document.addEventListener(
+
+    "DOMContentLoaded",
+
+    function(){
+
+        initializeStorage();
+
+        initializeBlueprint();
+
+    }
+
+);
+
+</script>
 
 </body>
 

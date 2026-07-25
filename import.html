@@ -385,28 +385,28 @@ document.getElementById("status").innerHTML=
 
 // Check import completion
 
+let importCompleted = false;
+
 function checkImportStatus(){
 
+    if(importCompleted)
+        return;
 
-let questions =
+    let questions =
 
-JSON.parse(
+        JSON.parse(
 
-localStorage.getItem("questionBank")
+            localStorage.getItem("questionBank")
 
-) || [];
+        ) || [];
 
+    if(questions.length > 0){
 
+        document.getElementById("managerButton")
 
-if(questions.length>0){
+            .classList.remove("d-none");
 
-
-document.getElementById("managerButton")
-
-.classList.remove("d-none");
-
-
-document.getElementById("status").innerHTML +=
+        document.getElementById("status").innerHTML +=
 
 `
 <hr>
@@ -415,14 +415,15 @@ document.getElementById("status").innerHTML +=
 </span>
 `;
 
+        importCompleted = true;
+
+    }
+
 }
 
 
-}
 
-
-
-setInterval(checkImportStatus,1000);
+checkImportStatus();
 
 
 </script>

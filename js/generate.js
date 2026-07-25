@@ -360,7 +360,6 @@ function printGeneratedPaper(){
 
 function registerGenerateEvents(){
 
-
     document.getElementById(
 
         "generateBtn"
@@ -373,11 +372,19 @@ function registerGenerateEvents(){
 
     );
 
+    document.getElementById(
+
+        "printBtn"
+
+    ).addEventListener(
+
+        "click",
+
+        printGeneratedPaper
+
+    );
 
 }
-
-
-
 //=========================================================
 // Startup
 //=========================================================

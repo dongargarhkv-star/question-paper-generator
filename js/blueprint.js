@@ -914,7 +914,7 @@ function generateQuestionPaper(){
 
     );
 
-    window.location.href="generator.html";
+    window.location.href = "generate.html";
 
 }
 

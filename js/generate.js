@@ -277,7 +277,57 @@ function displayPaper(){
 
     const settings = generateData.blueprint.paperSettings;
 
-    let html = "";
+   let html = `
+
+<div class="text-center mb-4">
+
+<h3>
+
+${document.getElementById("schoolName").value}
+
+</h3>
+
+<h4>
+
+${settings.examName}
+
+</h4>
+
+<h5>
+
+Class : ${settings.className}
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+Subject : ${settings.subject}
+
+</h5>
+
+<div class="d-flex justify-content-between">
+
+<b>Time : ${settings.duration}</b>
+
+<b>Maximum Marks : ${settings.maximumMarks}</b>
+
+</div>
+
+<hr>
+
+<div class="text-start">
+
+<b>General Instructions :</b>
+
+<br>
+
+${settings.instructions.replace(/\n/g,"<br>")}
+
+</div>
+
+<hr>
+
+</div>
+
+`;
 
     let currentSection = "";
 

@@ -277,51 +277,67 @@ function displayPaper(){
 
     const settings = generateData.blueprint.paperSettings;
 
-   let html = `
+    let html = `
 
-<div class="text-center mb-4">
+<div class="paper-container">
 
-<h3>
+<div class="paper-header">
 
-${document.getElementById("schoolName").textContent}
+<h2 class="text-center mb-2">
 
-</h3>
+${document.getElementById("schoolName").textContent.trim()}
 
-<h4>
+</h2>
+
+<h3 class="text-center mb-3">
 
 ${settings.examName}
 
+</h3>
+
+<h4 class="text-center mb-4">
+
+Question Paper
+
 </h4>
 
-<h5>
+<table class="table table-borderless mb-3">
 
-Class : ${settings.className}
+<tr>
 
-&nbsp;&nbsp;&nbsp;&nbsp;
+<td><b>Class :</b> ${settings.className}</td>
 
-Subject : ${settings.subject}
+<td class="text-center"><b>Subject :</b> ${settings.subject}</td>
 
-</h5>
+</tr>
 
-<div class="d-flex justify-content-between">
+<tr>
 
-<b>Time : ${settings.duration}</b>
+<td><b>Time :</b> ${settings.duration}</td>
 
-<b>Maximum Marks : ${settings.maximumMarks}</b>
+<td class="text-end"><b>Maximum Marks :</b> ${settings.maximumMarks}</td>
 
-</div>
+</tr>
+
+</table>
 
 <hr>
 
-<div class="text-start">
+<h5>
 
-<b>General Instructions :</b>
+GENERAL INSTRUCTIONS
 
-<br>
+</h5>
 
-${settings.instructions.replace(/\n/g,"<br>")}
+<ol>
 
-</div>
+${settings.instructions
+.split("\n")
+.filter(x=>x.trim()!=="")
+.map(x=>`<li>${x}</li>`)
+.join("")}
+
+</ol>
 
 <hr>
 
@@ -335,13 +351,13 @@ ${settings.instructions.replace(/\n/g,"<br>")}
 
     generateData.paper.forEach(function(q){
 
-        if(q.section !== currentSection){
+        if(q.section!==currentSection){
 
-            currentSection = q.section;
+            currentSection=q.section;
 
-            html += `
+            html+=`
 
-<hr>
+<div class="mt-4 mb-3">
 
 <h4 class="text-center">
 
@@ -349,13 +365,21 @@ SECTION ${currentSection}
 
 </h4>
 
+<hr>
+
+</div>
+
 `;
 
         }
 
-        html += `
+        html+=`
 
-<div class="mb-3">
+<div class="question-block mb-4">
+
+<div class="d-flex justify-content-between">
+
+<div>
 
 <b>Q.${questionNumber}</b>
 
@@ -363,9 +387,13 @@ SECTION ${currentSection}
 
 ${q.question}
 
-<div class="text-end">
+</div>
 
-<b>(${q.marks} Marks)</b>
+<div>
+
+<b>(${q.marks})</b>
+
+</div>
 
 </div>
 
@@ -376,6 +404,12 @@ ${q.question}
         questionNumber++;
 
     });
+
+    html += `
+
+</div>
+
+`;
 
     document.getElementById("questionArea").innerHTML = html;
 

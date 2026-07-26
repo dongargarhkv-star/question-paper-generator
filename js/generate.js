@@ -46,7 +46,7 @@ function initializeGenerator(){
 
 
     displayPaperDetails();
-    displayHeader();
+   // displayHeader();
 
 
     registerGenerateEvents();
@@ -110,7 +110,7 @@ ${settings.examName}
 // Display Header
 //=========================================================
 
-function displayHeader(){
+/*function displayHeader(){
 
 
     if(!generateData.blueprint)
@@ -161,7 +161,7 @@ ${settings.instructions.replace(/\n/g,"<br>")}
 </div>
 `;
 
-}
+}*/
 function alreadySelected(question){
 
     return generateData.paper.some(function(q){

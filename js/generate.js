@@ -283,7 +283,7 @@ function displayPaper(){
 
 <h3>
 
-${document.getElementById("schoolName").value}
+${document.getElementById("schoolName").textContent}
 
 </h3>
 

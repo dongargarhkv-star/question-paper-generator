@@ -283,8 +283,7 @@ function displayPaper(){
 
 <h2 class="text-center mb-2">
 
-${settings.schoolName || "PM SHRI Kendriya Vidyalaya Dongargarh"}
-
+${settings.schoolName}
 
 </h2>
 

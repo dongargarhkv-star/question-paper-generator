@@ -285,7 +285,7 @@ function displayPaper(){
 
 <h2 class="text-center mb-2">
 
-${document.getElementById("schoolName").textContent.trim()}
+${settings.schoolName}
 
 </h2>
 

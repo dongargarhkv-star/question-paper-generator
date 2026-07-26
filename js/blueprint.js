@@ -548,6 +548,9 @@ function saveBlueprint(){
 
         paperSettings:{
 
+            schoolName:
+                   document.getElementById("schoolName").value,
+
             className:
 
                 document.getElementById("className").value,

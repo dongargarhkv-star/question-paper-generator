@@ -414,11 +414,106 @@ ${q.question}
     document.getElementById("questionArea").innerHTML = html;
 
 }
+
+//=========================================================
+// Apply Print Layout
+//=========================================================
+
+function applyPrintLayout(){
+
+    let style = document.getElementById("printStyle");
+
+    if(style){
+
+        style.remove();
+
+    }
+
+    style = document.createElement("style");
+
+    style.id = "printStyle";
+
+    style.innerHTML = `
+
+@page{
+
+    size:A4;
+
+    margin:18mm;
+
+}
+
+@media print{
+
+    body{
+
+        background:white !important;
+
+    }
+
+    nav,
+    header,
+    footer,
+    .navbar,
+    .sidebar,
+    .btn,
+    #generateBtn,
+    #printBtn{
+
+        display:none !important;
+
+    }
+
+    #questionArea{
+
+        width:100%;
+
+        margin:0;
+
+        padding:0;
+
+        background:white;
+
+    }
+
+    .paper-container{
+
+        width:100%;
+
+        margin:0;
+
+        padding:0;
+
+        page-break-after:auto;
+
+    }
+
+    .question-block{
+
+        page-break-inside:avoid;
+
+    }
+
+    h2,h3,h4,h5{
+
+        page-break-after:avoid;
+
+    }
+
+}
+
+`;
+
+    document.head.appendChild(style);
+
+}
 //=========================================================
 // Print Question Paper
 //=========================================================
 
 function printGeneratedPaper(){
+
+    applyPrintLayout();
 
     window.print();
 

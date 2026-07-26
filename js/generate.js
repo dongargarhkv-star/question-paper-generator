@@ -260,6 +260,7 @@ for(let i=0;
 // Display Paper
 //=========================================================
 
+
 function displayPaper(){
 
     generateData.paper.sort(function(a,b){
@@ -274,21 +275,85 @@ function displayPaper(){
 
     });
 
-    let html="";
+    const settings = generateData.blueprint.paperSettings;
 
-    let currentSection="";
+    let html = `
 
-    let questionNumber=1;
+<div class="paper-container">
+
+<h2 class="text-center mb-2">
+
+${settings.schoolName || document.getElementById("schoolName").textContent.trim()}
+
+</h2>
+
+<h3 class="text-center mb-2">
+
+${settings.examName}
+
+</h3>
+
+<h4 class="text-center mb-4">
+
+Question Paper
+
+</h4>
+
+<table class="table table-borderless mb-3">
+
+<tr>
+
+<td><b>Class :</b> ${settings.className}</td>
+
+<td class="text-end"><b>Subject :</b> ${settings.subject}</td>
+
+</tr>
+
+<tr>
+
+<td><b>Time :</b> ${settings.duration}</td>
+
+<td class="text-end"><b>Maximum Marks :</b> ${settings.maximumMarks}</td>
+
+</tr>
+
+</table>
+
+<hr>
+
+<h5>
+
+GENERAL INSTRUCTIONS
+
+</h5>
+
+<ol>
+
+${settings.instructions
+.split("\n")
+.filter(line => line.trim() !== "")
+.map(line => `<li>${line}</li>`)
+.join("")}
+
+</ol>
+
+<hr>
+
+`;
+
+    let currentSection = "";
+
+    let questionNumber = 1;
 
     generateData.paper.forEach(function(q){
 
-        if(q.section!==currentSection){
+        if(q.section !== currentSection){
 
-            currentSection=q.section;
+            currentSection = q.section;
 
-            html+=`
+            html += `
 
-<hr>
+<div class="mt-4">
 
 <h4 class="text-center">
 
@@ -298,11 +363,13 @@ SECTION ${currentSection}
 
 <hr>
 
+</div>
+
 `;
 
         }
 
-        html+=`
+        html += `
 
 <div class="question-block mb-3">
 
@@ -334,11 +401,15 @@ ${q.question}
 
     });
 
-    document.getElementById("questionArea").innerHTML=html;
+    html += `
+
+</div>
+
+`;
+
+    document.getElementById("questionArea").innerHTML = html;
 
 }
-
-
 
 
 //=========================================================

@@ -649,6 +649,8 @@ function loadBlueprint(){
     document.getElementById("className").value=
 
         data.paperSettings.className;
+    document.getElementById("schoolName").value =
+    data.paperSettings.schoolName;
 
     document.getElementById("subjectName").value=
 

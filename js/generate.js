@@ -260,7 +260,6 @@ for(let i=0;
 // Display Paper
 //=========================================================
 
-
 function displayPaper(){
 
     generateData.paper.sort(function(a,b){
@@ -275,79 +274,11 @@ function displayPaper(){
 
     });
 
-    const settings = generateData.blueprint.paperSettings;
+    let html="";
 
-    let html = `
+    let currentSection="";
 
-<div class="paper-container">
-
-<div class="paper-header">
-
-<h2 class="text-center mb-2">
-
-${settings.schoolName}
-
-</h2>
-
-<h3 class="text-center mb-3">
-
-${settings.examName}
-
-</h3>
-
-<h4 class="text-center mb-4">
-
-Question Paper
-
-</h4>
-
-<table class="table table-borderless mb-3">
-
-<tr>
-
-<td><b>Class :</b> ${settings.className}</td>
-
-<td class="text-center"><b>Subject :</b> ${settings.subject}</td>
-
-</tr>
-
-<tr>
-
-<td><b>Time :</b> ${settings.duration}</td>
-
-<td class="text-end"><b>Maximum Marks :</b> ${settings.maximumMarks}</td>
-
-</tr>
-
-</table>
-
-<hr>
-
-<h5>
-
-GENERAL INSTRUCTIONS
-
-</h5>
-
-<ol>
-
-${settings.instructions
-.split("\n")
-.filter(x=>x.trim()!=="")
-.map(x=>`<li>${x}</li>`)
-.join("")}
-
-</ol>
-
-<hr>
-
-</div>
-
-`;
-
-    let currentSection = "";
-
-    let questionNumber = 1;
+    let questionNumber=1;
 
     generateData.paper.forEach(function(q){
 
@@ -357,7 +288,7 @@ ${settings.instructions
 
             html+=`
 
-<div class="mt-4 mb-3">
+<hr>
 
 <h4 class="text-center">
 
@@ -367,15 +298,13 @@ SECTION ${currentSection}
 
 <hr>
 
-</div>
-
 `;
 
         }
 
         html+=`
 
-<div class="question-block mb-4">
+<div class="question-block mb-3">
 
 <div class="d-flex justify-content-between">
 
@@ -405,15 +334,12 @@ ${q.question}
 
     });
 
-    html += `
-
-</div>
-
-`;
-
-    document.getElementById("questionArea").innerHTML = html;
+    document.getElementById("questionArea").innerHTML=html;
 
 }
+
+
+
 
 //=========================================================
 // Apply Print Layout

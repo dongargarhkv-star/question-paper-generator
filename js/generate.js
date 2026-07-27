@@ -510,7 +510,17 @@ function registerGenerateEvents(){
         generatePaper
 
     );
+    document.getElementById(
 
+    "downloadWordBtn"
+
+).addEventListener(
+
+    "click",
+
+    downloadWordDocument
+
+);
     document.getElementById(
 
         "printBtn"

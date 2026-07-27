@@ -45,7 +45,7 @@ function initializeGenerator(){
     generateData.blueprint = loadBlueprint();
 
 
-    displayPaperDetails();
+    //displayPaperDetails();
    // displayHeader();
 
 

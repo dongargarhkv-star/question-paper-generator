@@ -279,7 +279,7 @@ function displayPaper(){
 
     let html = `
 
-<div class="paper-container">
+<div class="paper-container" style="width:100%;">
 
 <h2 class="text-center mb-2">
 

@@ -24,13 +24,11 @@ href="css/style.css">
 
 <body>
 
-
 <nav class="navbar navbar-dark bg-primary">
 
 <div class="container">
 
-<a class="navbar-brand"
-href="index.html">
+<a class="navbar-brand" href="index.html">
 
 AI Question Paper Generator v2.0
 
@@ -40,13 +38,13 @@ AI Question Paper Generator v2.0
 
 </nav>
 
-
-
 <div class="container mt-4">
+
 <div id="paperDetails" style="display:none;"></div>
 
-<div class="card shadow">
+<!-- Controls Card -->
 
+<div class="card shadow">
 
 <div class="card-header bg-danger text-white">
 
@@ -58,13 +56,10 @@ Question Paper Generator
 
 </div>
 
-
 <div class="card-body">
 
 <button
-
 id="generateBtn"
-
 class="btn btn-danger btn-lg">
 
 🤖 Generate Paper
@@ -72,41 +67,34 @@ class="btn btn-danger btn-lg">
 </button>
 
 <button
-
 id="printBtn"
-
 class="btn btn-secondary btn-lg ms-2">
 
 🖨 Print Paper
 
 </button>
 
-<hr>
+</div>
 
+</div>
 
+<!-- Printable Area -->
 
-<hr>
+<div id="printArea" class="mt-4">
+
 <div id="questionArea">
 
 No Paper Generated
 
 </div>
 
-
 </div>
 
 </div>
-
-
-</div>
-
-
 
 <script src="js/storage.js"></script>
 
 <script src="js/generate.js"></script>
 
-
 </body>
-
 </html>

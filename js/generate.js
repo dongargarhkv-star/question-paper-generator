@@ -433,68 +433,45 @@ function applyPrintLayout(){
     style.innerHTML = `
 
 @page{
-
-    size:A4;
-
-    margin:18mm;
-
+    size: A4;
+    margin:15mm;
 }
 
 @media print{
 
     body{
-
         background:white !important;
-
     }
 
-    nav,
-    header,
-    footer,
-    .navbar,
-    .sidebar,
-    .btn,
-    #generateBtn,
-    #printBtn{
+    /* Hide everything */
+    body *{
+        visibility:hidden;
+    }
 
-        display:none !important;
-
+    /* Show only the paper */
+    #questionArea,
+    #questionArea *{
+        visibility:visible;
     }
 
     #questionArea{
-
+        position:absolute;
+        left:0;
+        top:0;
         width:100%;
-
         margin:0;
-
         padding:0;
-
-        background:white;
-
     }
 
     .paper-container{
-
         width:100%;
-
+        max-width:100%;
         margin:0;
-
         padding:0;
-
-        page-break-after:auto;
-
     }
 
     .question-block{
-
         page-break-inside:avoid;
-
-    }
-
-    h2,h3,h4,h5{
-
-        page-break-after:avoid;
-
     }
 
 }
